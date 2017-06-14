@@ -1,4 +1,4 @@
-package com.sap.vt.todoapp;
+package com.sap.vt.todoapp.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.sap.vt.todoapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
