@@ -5,12 +5,21 @@ package com.sap.vt.todoapp.domain;
  */
 
 public class ToDoNote {
+    private int id;
     private String title;
     private String description;
     private boolean isDone;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
@@ -18,7 +27,7 @@ public class ToDoNote {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -26,10 +35,10 @@ public class ToDoNote {
     }
 
     public boolean isDone() {
-        return isDone;
+        return this.isDone;
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        this.isDone = done;
     }
 }
