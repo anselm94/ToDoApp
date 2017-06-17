@@ -8,6 +8,4 @@ import java.util.ArrayList;
 
 public interface IToDoNoteRepoListener {
     void onUpdate(ArrayList<ToDoNote> notDoneItems, ArrayList<ToDoNote> doneItems);
-
-    void onNewNoteCreated(ToDoNote todoNote);
 }

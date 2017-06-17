@@ -9,13 +9,13 @@ import java.util.ArrayList;
  */
 
 public interface IPersistenceMapper {
-    int createEntry(ToDoNote note);
+    boolean createEntry(ToDoNote note);
 
     ToDoNote readEntry(int id);
 
     ArrayList<ToDoNote> readEntries();
 
-    boolean updateEntryStatus(int id);
+    boolean updateEntryStatus(ToDoNote toDoNote);
 
     boolean deleteEntry(int id);
 }

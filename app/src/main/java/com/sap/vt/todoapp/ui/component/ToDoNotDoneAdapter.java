@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.sap.vt.todoapp.R;
@@ -22,7 +23,7 @@ public class ToDoNotDoneAdapter extends BaseAdapter {
     protected Context mContext;
     protected LayoutInflater mInflater;
     protected ArrayList<ToDoNote> mDataSource;
-    protected IToDoItemCloseListener mListener;
+    protected IToDoItemListener mListener;
 
     public ToDoNotDoneAdapter(Context context, ArrayList<ToDoNote> items) {
         this.mContext = context;
@@ -35,7 +36,7 @@ public class ToDoNotDoneAdapter extends BaseAdapter {
         }
     }
 
-    public void setToDoItemCloseListener(IToDoItemCloseListener listener) {
+    public void setToDoItemListener(IToDoItemListener listener) {
         this.mListener = listener;
     }
 
@@ -74,14 +75,25 @@ public class ToDoNotDoneAdapter extends BaseAdapter {
 
         titleTextView.setText(mDataSource.get(position).getTitle());
         descTextView.setText(mDataSource.get(position).getDescription());
-        doneCheckBox.setEnabled(mDataSource.get(position).isDone());
+        doneCheckBox.setChecked(mDataSource.get(position).isDone());
 
         this.customPaint(titleTextView, descTextView);
 
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onToDoItemCloseClicked(mDataSource.get(position));
+                if (mListener != null) {
+                    mListener.onToDoItemCloseClicked(mDataSource.get(position));
+                }
+            }
+        });
+        doneCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mDataSource.get(position).setDone(b);
+                if (mListener != null) {
+                    mListener.onToDoItemCheckedClicked(mDataSource.get(position));
+                }
             }
         });
 
